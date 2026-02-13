@@ -42,6 +42,8 @@ async function bootstrap() {
     ),
   );
 
+  app.use('/uploads', express.static(join(__dirname, '..', 'uploads')));
+
   app.useGlobalFilters(new JSONParseExceptionFilter());
 
   await app.listen(PORT ?? 3000);

@@ -12,6 +12,7 @@ import { TokensModule } from './api/components/tokens/tokens.module';
 import { FilesModule } from './api/components/files/files.module';
 import { MessagesModule } from './api/components/messages/messages.module';
 import { StudiesModule } from './api/components/studies/studies.module';
+import { UploadModule } from './api/components/upload/upload.module';
 import { DB_HOST, DB_NAME, DB_PASSWORD, DB_PORT, DB_USER } from './settings';
 
 @Module({
@@ -38,6 +39,7 @@ import { DB_HOST, DB_NAME, DB_PASSWORD, DB_PORT, DB_USER } from './settings';
     FilesModule,
     MessagesModule,
     StudiesModule,
+    UploadModule,
   ],
   controllers: [AppController],
   providers: [AppService],
