@@ -2,6 +2,10 @@ import { Repository } from 'typeorm';
 import { Study, StudyType } from '../../api/components/studies/entities/study.entity';
 import { Technology } from '../../api/components/technologies/entities/technology.entity';
 
+function isTechnology(value: Technology | undefined): value is Technology {
+  return value !== undefined;
+}
+
 export function getStudySeedData(technologies: Technology[]) {
   const techMap = new Map(technologies.map((t) => [t.name, t]));
 
@@ -12,14 +16,14 @@ export function getStudySeedData(technologies: Technology[]) {
       description: 'Graduação em Análise e Desenvolvimento de Sistemas com foco em engenharia de software, banco de dados, estrutura de dados e desenvolvimento web.',
       startDate: new Date('2020-02-01'),
       endDate: new Date('2023-12-15'),
-      certificateUrl: null,
+      certificateUrl: undefined,
       type: StudyType.GRADUATION,
       technologies: [
         techMap.get('JavaScript'),
         techMap.get('Python'),
         techMap.get('PostgreSQL'),
         techMap.get('Git'),
-      ].filter(Boolean),
+      ].filter(isTechnology),
     },
     {
       title: 'NestJS: Criando APIs Profissionais',
@@ -34,7 +38,7 @@ export function getStudySeedData(technologies: Technology[]) {
         techMap.get('TypeScript'),
         techMap.get('PostgreSQL'),
         techMap.get('Node.js'),
-      ].filter(Boolean),
+      ].filter(isTechnology),
     },
     {
       title: 'React Avançado',
@@ -49,7 +53,7 @@ export function getStudySeedData(technologies: Technology[]) {
         techMap.get('Next.js'),
         techMap.get('TypeScript'),
         techMap.get('Tailwind CSS'),
-      ].filter(Boolean),
+      ].filter(isTechnology),
     },
     {
       title: 'Docker & Kubernetes Essentials',
@@ -62,20 +66,20 @@ export function getStudySeedData(technologies: Technology[]) {
       technologies: [
         techMap.get('Docker'),
         techMap.get('Node.js'),
-      ].filter(Boolean),
+      ].filter(isTechnology),
     },
     {
       title: 'MongoDB para Desenvolvedores',
       institution: 'MongoDB University',
       description: 'Curso oficial da MongoDB University cobrindo modelagem de dados, queries avançadas, aggregation pipeline e performance tuning.',
       startDate: new Date('2024-08-01'),
-      endDate: null,
-      certificateUrl: null,
+      endDate: undefined,
+      certificateUrl: undefined,
       type: StudyType.COURSE,
       technologies: [
         techMap.get('MongoDB'),
         techMap.get('Node.js'),
-      ].filter(Boolean),
+      ].filter(isTechnology),
     },
   ];
 }

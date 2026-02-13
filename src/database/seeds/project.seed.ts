@@ -5,6 +5,10 @@ import {
 } from '../../api/components/projects/entities/project.entity';
 import { Technology } from '../../api/components/technologies/entities/technology.entity';
 
+function isTechnology(value: Technology | undefined): value is Technology {
+  return value !== undefined;
+}
+
 export function getProjectSeedData(technologies: Technology[]) {
   const techMap = new Map(technologies.map((t) => [t.name, t]));
 
@@ -29,7 +33,7 @@ export function getProjectSeedData(technologies: Technology[]) {
         techMap.get('PostgreSQL'),
         techMap.get('Tailwind CSS'),
         techMap.get('Docker'),
-      ].filter(Boolean),
+      ].filter(isTechnology),
     },
     {
       title: 'E-commerce API',
@@ -41,7 +45,7 @@ export function getProjectSeedData(technologies: Technology[]) {
         'https://picsum.photos/seed/ecommerce-2/800/450',
       ],
       githubRepoUrl: 'https://github.com/user/ecommerce-api',
-      liveSiteUrl: null,
+      liveSiteUrl: undefined,
       status: ProjectStatus.COMPLETED,
       technologies: [
         techMap.get('NestJS'),
@@ -50,7 +54,7 @@ export function getProjectSeedData(technologies: Technology[]) {
         techMap.get('Redis'),
         techMap.get('Docker'),
         techMap.get('Node.js'),
-      ].filter(Boolean),
+      ].filter(isTechnology),
     },
     {
       title: 'Task Manager Mobile',
@@ -62,14 +66,14 @@ export function getProjectSeedData(technologies: Technology[]) {
         'https://picsum.photos/seed/taskmanager-2/800/450',
       ],
       githubRepoUrl: 'https://github.com/user/task-manager',
-      liveSiteUrl: null,
+      liveSiteUrl: undefined,
       status: ProjectStatus.COMPLETED,
       technologies: [
         techMap.get('React Native'),
         techMap.get('TypeScript'),
         techMap.get('Node.js'),
         techMap.get('MongoDB'),
-      ].filter(Boolean),
+      ].filter(isTechnology),
     },
     {
       title: 'Dashboard Analytics',
@@ -88,7 +92,7 @@ export function getProjectSeedData(technologies: Technology[]) {
         techMap.get('Python'),
         techMap.get('PostgreSQL'),
         techMap.get('Docker'),
-      ].filter(Boolean),
+      ].filter(isTechnology),
     },
   ];
 }

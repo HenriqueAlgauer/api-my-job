@@ -3,6 +3,10 @@ import { Post, PostStatus } from '../../api/components/posts/entities/post.entit
 import { User } from '../../api/components/users/entities/user.entity';
 import { Tag } from '../../api/components/tags/entities/tag.entity';
 
+function isTag(value: Tag | undefined): value is Tag {
+  return value !== undefined;
+}
+
 export function getPostSeedData(users: User[], tags: Tag[]) {
   const admin = users[0];
   const joao = users[1] || users[0];
@@ -37,7 +41,7 @@ NestJS é uma excelente escolha para quem quer construir APIs profissionais com 
       coverImageUrl: 'https://picsum.photos/seed/nestjs/1200/630',
       status: PostStatus.PUBLISHED,
       author: admin,
-      tags: [tagMap.get('NestJS'), tagMap.get('Node.js'), tagMap.get('Backend'), tagMap.get('TypeScript')].filter(Boolean),
+      tags: [tagMap.get('NestJS'), tagMap.get('Node.js'), tagMap.get('Backend'), tagMap.get('TypeScript')].filter(isTag),
     },
     {
       slug: 'react-hooks-guia-completo',
@@ -70,7 +74,7 @@ Crie seus próprios hooks para reutilizar lógica entre componentes.`,
       coverImageUrl: 'https://picsum.photos/seed/react-hooks/1200/630',
       status: PostStatus.PUBLISHED,
       author: joao,
-      tags: [tagMap.get('React'), tagMap.get('Frontend'), tagMap.get('JavaScript'), tagMap.get('Tutorial')].filter(Boolean),
+      tags: [tagMap.get('React'), tagMap.get('Frontend'), tagMap.get('JavaScript'), tagMap.get('Tutorial')].filter(isTag),
     },
     {
       slug: 'docker-para-desenvolvedores',
@@ -106,7 +110,7 @@ Docker é essencial no toolkit de qualquer desenvolvedor moderno.`,
       coverImageUrl: 'https://picsum.photos/seed/docker/1200/630',
       status: PostStatus.PUBLISHED,
       author: admin,
-      tags: [tagMap.get('Docker'), tagMap.get('DevOps'), tagMap.get('Boas Práticas')].filter(Boolean),
+      tags: [tagMap.get('Docker'), tagMap.get('DevOps'), tagMap.get('Boas Práticas')].filter(isTag),
     },
     {
       slug: 'typescript-avancado-generics',
@@ -137,7 +141,7 @@ TypeScript oferece tipos utilitários poderosos como \`Partial<T>\`, \`Pick<T, K
       coverImageUrl: 'https://picsum.photos/seed/typescript/1200/630',
       status: PostStatus.DRAFT,
       author: admin,
-      tags: [tagMap.get('TypeScript'), tagMap.get('Boas Práticas'), tagMap.get('Tutorial')].filter(Boolean),
+      tags: [tagMap.get('TypeScript'), tagMap.get('Boas Práticas'), tagMap.get('Tutorial')].filter(isTag),
     },
     {
       slug: 'api-rest-boas-praticas',
@@ -177,7 +181,7 @@ Use versionamento na URL: \`/api/v1/users\`
       coverImageUrl: 'https://picsum.photos/seed/api-rest/1200/630',
       status: PostStatus.PUBLISHED,
       author: joao,
-      tags: [tagMap.get('API REST'), tagMap.get('Backend'), tagMap.get('Boas Práticas'), tagMap.get('Arquitetura')].filter(Boolean),
+      tags: [tagMap.get('API REST'), tagMap.get('Backend'), tagMap.get('Boas Práticas'), tagMap.get('Arquitetura')].filter(isTag),
     },
   ];
 }
@@ -204,3 +208,4 @@ export async function seedPosts(
   console.log(`✔ ${posts.length} posts seeded`);
   return posts;
 }
+
