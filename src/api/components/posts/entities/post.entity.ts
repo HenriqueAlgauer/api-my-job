@@ -21,7 +21,7 @@ export enum PostStatus {
 export class Post extends Base{
 
   @Column({ unique: true })
-  slug: string; // URL amigável (ex: "como-usar-nestjs")
+  slug: string;
 
   @Column()
   title: string;
